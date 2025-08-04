@@ -7,7 +7,7 @@ export const registerGlobalLoader = (fn) => {
 };
 
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: import.meta.env.REACT_APP_API_BASE_URL,
 });
 
 //request interceptors
