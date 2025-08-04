@@ -55,8 +55,8 @@ const ITEPApplicant = () => {
     try {
       const response = await batchService.getAll();
       const unCompletedBatches = response.data
-        .filter((batch) => batch.status !== "completed")
-        .map((batch) => ({
+        ?.filter((batch) => batch.status !== "completed")
+        ?.map((batch) => ({
           label: batch.batch_Name,
           value: batch._id,
         }));
@@ -80,18 +80,18 @@ const ITEPApplicant = () => {
     },
     {
       title: "Pending for Exam",
-      count: itepApplicants.filter((applicant) => !applicant.examAllowed)
+      count: itepApplicants?.filter((applicant) => !applicant.examAllowed)
         .length,
       icon: <Clock size={20} />,
     },
     {
       title: "Allowed for Exam",
-      count: itepApplicants.filter((applicant) => applicant.examAllowed).length,
+      count: itepApplicants?.filter((applicant) => applicant.examAllowed).length,
       icon: <CheckCircle2 size={20} />,
     },
     {
       title: "Selected Applicants",
-      count: itepApplicants.filter(
+      count: itepApplicants?.filter(
         (applicant) => applicant.status === "selected"
       ).length,
       icon: <UserCheck size={20} />,
