@@ -1,14 +1,5 @@
-import FormWrapper from "@/components/common/Form/FormWrapper";
-import InputField from "@/components/common/Form/InputField";
-import TextAreaField from "@/components/common/Form/TextAreaField";
-import Button from "@/components/common/UI/Button";
-import StudentDashboardCard from "@/components/common/UI/StudentDashboardCard";
-import FormModal from "@/components/modals/FormModal";
 import useAuth from "@/hooks/useAuth";
-import DashboardLayout from "@/layouts/DashboardLayout";
 import DataTable from "@/layouts/DataTable";
-import Navbar from "@/layouts/Navbar";
-import Sidebar from "@/layouts/Sidebar";
 import StatCard from "@/layouts/StatCard";
 import studentService from "@/services/studentService";
 import toastmasterService from "@/services/toastmasterService";
@@ -36,8 +27,8 @@ const StudentToastMastersPage = () => {
   const fetchStudent = async () => {
     try {
       const response = await studentService.getStudentByUserId(user.userId);
-      setStudent(response.data);
-      return response.data;
+      setStudent(response.data || []);
+      return response.data || [];
     } catch (error) {
       if (error && error.response.status === 404) {
         toast.warn("Student is not found");
@@ -50,9 +41,8 @@ const StudentToastMastersPage = () => {
   const fetchSessions = async (id) => {
     try {
       const response = await toastmasterService.getAllSessionsByBatchId(id);
-      setSessions(
-        response.data.sort((a, b) => new Date(b.date) - new Date(a.date))
-      );
+      const sessions = response.data || [];
+      setSessions(sessions.sort((a, b) => new Date(b.date) - new Date(a.date)));
     } catch (error) {
       if (error && error.response?.status === 404) {
         toast.warn("Sessions are not found");

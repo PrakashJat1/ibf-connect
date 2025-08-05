@@ -32,8 +32,8 @@ const TrainerAssessmentsPage = () => {
   const fetchTrainer = async () => {
     try {
       const response = await trainerService.getTrainerByUserId(user.userId);
-      setTrainer(response.data);
-      return response.data;
+      setTrainer(response.data || []);
+      return response.data || [];
     } catch (error) {
       if (error && error.response.status === 404) {
         toast.warn("Trainer is not found");
@@ -48,7 +48,7 @@ const TrainerAssessmentsPage = () => {
       const response = await assessmentService.getAllAssessmentsByTrainerId(
         trainer?._id
       );
-      setAllAssessments(response.data);
+      setAllAssessments(response.data || []);
     } catch (error) {
       toast.error("Error in fetching allAssessments");
       console.log("Error in fetching allAssessments", error);
@@ -265,7 +265,7 @@ const TrainerAssessmentsPage = () => {
 
     try {
       const response = await assessmentService.updateAssessmentMarks(payLoad);
-      setCreatedAssessment(response.data);
+      setCreatedAssessment(response.data || []);
       fetchAllAssessments(trainer);
       toast.success("Assessment Updated Successfully");
     } catch (error) {

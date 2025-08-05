@@ -37,8 +37,8 @@ const TrainerProjectPage = () => {
   const fetchTrainer = async () => {
     try {
       const response = await trainerService.getTrainerByUserId(user.userId);
-      setTrainer(response.data);
-      return response.data;
+      setTrainer(response.dat || []);
+      return response.data || []
     } catch (error) {
       if (error && error.response.status === 404) {
         toast.warn("Trainer is not found");
@@ -54,7 +54,7 @@ const TrainerProjectPage = () => {
         batchIds: trainer?.assigned_Batches,
       };
       const response = await projectService.getAllProjectsByBatchIds(payLoad);
-      setAllProjects(response.data);
+      setAllProjects(response.data || []);
     } catch (error) {
       toast.error("Error in fetching getAllProjects");
       console.log("Error in fetching getAllProjects", error);

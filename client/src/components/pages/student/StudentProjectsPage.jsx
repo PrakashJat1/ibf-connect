@@ -27,8 +27,8 @@ const StudentProjectsPage = () => {
   const fetchStudent = async () => {
     try {
       const response = await studentService.getStudentByUserId(user.userId);
-      setStudent(response.data);
-      return response.data;
+      setStudent(response.data || []);
+      return response.data || []
     } catch (error) {
       if (error && error.response.status === 404) {
         toast.warn("Student is not found");
@@ -41,7 +41,7 @@ const StudentProjectsPage = () => {
   const fetchProjects = async (id) => {
     try {
       const response = await projectService.getAllProjectsByStudentId(id);
-      setProjects(response.data);
+      setProjects(response.data || []);
     } catch (error) {
       if (error && error.response.status === 404) {
         toast.warn("Projects is not found");

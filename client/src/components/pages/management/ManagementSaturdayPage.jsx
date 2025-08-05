@@ -37,7 +37,7 @@ const ManagementSaturdayPage = () => {
   const fetchAllBatches = async () => {
     try {
       const response = await batchService.getAll();
-      const batches = response.data;
+      const batches = response.data || [];
 
       const formattedOptions = batches.map((batch) => ({
         label: batch.batch_Name,
@@ -57,9 +57,8 @@ const ManagementSaturdayPage = () => {
   const fetchSessions = async () => {
     try {
       const response = await saturdaysessionService.getAllSession();
-      setSessions(
-        response.data.sort((a, b) => new Date(b.date) - new Date(a.date))
-      );
+      const sessions = response.data || [];
+      setSessions(sessions.sort((a, b) => new Date(b.date) - new Date(a.date)));
     } catch (error) {
       if (error && error.response.status === 404) {
         toast.warn("Sessions are not found");

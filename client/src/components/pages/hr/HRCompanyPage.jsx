@@ -41,7 +41,8 @@ const HRCompanyPage = () => {
   const fetchCompanies = async () => {
     try {
       const response = await companyService.getAll();
-      const sortedCompanies = response.data.sort(
+      const companies = response.data || [];
+      const sortedCompanies = companies?.sort(
         (a, b) => new Date(b.driveDate) - new Date(a.driveDate)
       );
       setCompanies(sortedCompanies);
@@ -57,7 +58,7 @@ const HRCompanyPage = () => {
   const fetchAllBatches = async () => {
     try {
       const response = await batchService.getAll();
-      setAllBatches(response.data);
+      setAllBatches(response.data || []);
     } catch (error) {
       toast.error("Error in fetching fetchAllBatches");
       console.log("Error in fetching fetchAllBatches", error);

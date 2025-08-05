@@ -22,8 +22,8 @@ const StudentDashboardPage = () => {
   const fetchStudent = async () => {
     try {
       const response = await studentService.getStudentByUserId(user.userId);
-      setStudent(response.data);
-      return response.data;
+      setStudent(response.data || []);
+      return response.data || []
     } catch (error) {
       if (error && error.response.status === 404) {
         toast.warn("Student is not found");
@@ -36,7 +36,7 @@ const StudentDashboardPage = () => {
   const fetchProjects = async (id) => {
     try {
       const response = await projectService.getAllProjectsByStudentId(id);
-      setProjects(response.data);
+      setProjects(response.data || []);
     } catch (error) {
       if (error && error.response.status === 404) {
         toast.warn("Projects is not found");
@@ -49,7 +49,7 @@ const StudentDashboardPage = () => {
   const fetchAssessments = async (id) => {
     try {
       const response = await assessmentService.getAllByBatchId(id);
-      setAssessments(response.data);
+      setAssessments(response.data || []);
     } catch (error) {
       if (error && error.response.status === 404) {
         toast.warn("Assessments is not found");
@@ -62,7 +62,7 @@ const StudentDashboardPage = () => {
   const fetchBookIssued = async (id) => {
     try {
       const response = await bookissueService.getIssueRequestByStudentId(id);
-      setBookIssued(response.data);
+      setBookIssued(response.data || []);
     } catch (error) {
       if (error && error.response.status === 404) {
         toast.warn("BookIssued is not found");
@@ -76,7 +76,7 @@ const StudentDashboardPage = () => {
     try {
       const response =
         await saturdaysessionService.getAllSaturdaySessionsByStudentId(id);
-      setSessions(response.data);
+      setSessions(response.data || []);
     } catch (error) {
       if (error && error.response.status === 404) {
         toast.warn("Sessions are not found");

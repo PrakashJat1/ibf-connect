@@ -26,8 +26,8 @@ const StudentAssessmentsPage = () => {
   const fetchStudent = async () => {
     try {
       const response = await studentService.getStudentByUserId(user.userId);
-      setStudent(response.data);
-      return response.data;
+      setStudent(response.data || []);
+      return response.data || [];
     } catch (error) {
       if (error && error.response.status === 404) {
         toast.warn("Student is not found");
@@ -40,8 +40,9 @@ const StudentAssessmentsPage = () => {
   const fetchAssessments = async (id) => {
     try {
       const response = await assessmentService.getAllByBatchId(id);
+      const assessments = response.data || []
       setAssessments(
-        response.data.sort((a, b) => new Date(b.month) - new Date(a.month))
+        assessments.sort((a, b) => new Date(b.month) - new Date(a.month))
       );
     } catch (error) {
       if (error && error.response.status === 404) {

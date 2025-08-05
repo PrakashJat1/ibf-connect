@@ -35,8 +35,8 @@ const TrainerPDFpage = () => {
   const fetchTrainer = async () => {
     try {
       const response = await trainerService.getTrainerByUserId(user.userId);
-      setTrainer(response.data);
-      return response.data;
+      setTrainer(response.data || []);
+      return response.data || []
     } catch (error) {
       if (error && error.response.status === 404) {
         toast.warn("Trainer is not found");
@@ -49,7 +49,7 @@ const TrainerPDFpage = () => {
   const fetchAllPDFs = async (trainer) => {
     try {
       const response = await pdfService.getAllPDFByTrainerId(trainer._id);
-      setAllPDF(response.data);
+      setAllPDF(response.data || []);
     } catch (error) {
       toast.error("Error in fetching fetchAllPDFs");
       console.log("Error in fetching fetchAllPDFs", error);

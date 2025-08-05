@@ -41,7 +41,7 @@ const HRStudentPage = () => {
   const fetchAllStudents = async () => {
     try {
       const response = await studentService.getAll();
-      setStudents(response.data);
+      setStudents(response.data || []);
       getAllAssessments();
     } catch (error) {
       if (error.response && error.response.status !== 409)
@@ -53,7 +53,7 @@ const HRStudentPage = () => {
   const getAllAssessments = async () => {
     try {
       const response = await assessmentService.getAllAssessments();
-      const assessments = response.data;
+      const assessments = response.data || [];
 
       setAllAssessments(assessments);
 
@@ -98,7 +98,7 @@ const HRStudentPage = () => {
   const fetchAllBatches = async () => {
     try {
       const response = await batchService.getAll();
-      setBatches(response.data);
+      setBatches(response.data || []);
     } catch (error) {
       toast.error("Error in batch fetching");
       console.log("Error in batch fetching", error);

@@ -46,7 +46,7 @@ const ManagementBatchPage = () => {
   const fetchAllBatches = async () => {
     try {
       const response = await batchService.getAll();
-      setBatches(response.data);
+      setBatches(response.data || []);
     } catch (error) {
       toast.error("Error in AllBatches fetching");
       console.log("Error in AllBatches fetching", error);
@@ -56,7 +56,7 @@ const ManagementBatchPage = () => {
   const fetchAllTrainers = async () => {
     try {
       const response = await trainerService.getAll();
-      setTrainers(response.data);
+      setTrainers(response.data || []);
       const trainers = response.data;
 
       setTechnicalTrainers(
@@ -77,7 +77,7 @@ const ManagementBatchPage = () => {
   const fetchAllStudents = async () => {
     try {
       const response = await studentService.getAll();
-      setStudents(response.data);
+      setStudents(response.data || []);
     } catch (error) {
       toast.error("Error in fetching students");
       console.log("Error in fetching students", error);

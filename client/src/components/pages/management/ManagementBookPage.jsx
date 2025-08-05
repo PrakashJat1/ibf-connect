@@ -287,7 +287,7 @@ const ManagementBookPage = () => {
   const fetchAllBooks = async () => {
     try {
       const response = await bookService.getAll();
-      setAllBooks(response.data);
+      setAllBooks(response.data || []);
     } catch (error) {
       toast.error("Error in fetching AllBooks");
       console.log("Error in fetching AllBooks", error);
@@ -297,7 +297,7 @@ const ManagementBookPage = () => {
   const fetchAllIssuedBooks = async () => {
     try {
       const response = await bookissueService.getAll();
-      setAllIssuedBooks(response.data);
+      setAllIssuedBooks(response.data || []);
     } catch (error) {
       toast.error("Error in fetching IssuedBooks");
       console.log("Error in fetching IssuedBooks", error);

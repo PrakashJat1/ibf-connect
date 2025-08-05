@@ -29,7 +29,7 @@ const ManagementPDFPage = () => {
   const fetchAllPDFs = async () => {
     try {
       const response = await pdfService.getAllPDFs();
-      setAllPDF(response.data);
+      setAllPDF(response.data || []);
     } catch (error) {
       toast.error("Error in fetching fetchAllPDFs");
       console.log("Error in fetching fetchAllPDFs", error);

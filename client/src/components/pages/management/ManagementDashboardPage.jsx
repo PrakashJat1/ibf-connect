@@ -38,7 +38,8 @@ const ManagementDashboardPage = () => {
   const fetchAllCurrentMonthApplicants = async () => {
     try {
       const response = await itepApplicantService.getAll();
-      setCurrMonthApplicants(response.data.users);
+      const users = response.data || [];
+      setCurrMonthApplicants(users.users);
     } catch (error) {
       toast.error("Error in fetchAllCurrentMonthApplicants");
       console.log("Error in fetchAllCurrentMonthApplicants", error);
@@ -48,7 +49,7 @@ const ManagementDashboardPage = () => {
   const fetchAllStudents = async () => {
     try {
       const response = await studentService.getAll();
-      setStudents(response.data);
+      setStudents(response.data || []);
     } catch (error) {
       toast.error("Error in fetchAllStudents");
       console.log("Error in fetchAllStudents", error);
@@ -58,7 +59,7 @@ const ManagementDashboardPage = () => {
   const fetchAllAssessments = async () => {
     try {
       const response = await assessmentService.getAllAssessments();
-      setAssessments(response.data);
+      setAssessments(response.data || []);
     } catch (error) {
       toast.error("Error in fetchAllAssessments");
       console.log("Error in fetchAllAssessments", error);
@@ -68,7 +69,7 @@ const ManagementDashboardPage = () => {
   const fetchAllProjects = async () => {
     try {
       const response = await projectService.getAllProjects();
-      setProjects(response.data);
+      setProjects(response.data || []);
     } catch (error) {
       toast.error("Error in fetchAllProjects");
       console.log("Error in fetchAllProjects", error);
@@ -78,7 +79,7 @@ const ManagementDashboardPage = () => {
   const fetchAllApplicants = async () => {
     try {
       const response = await itepApplicantService.getAll();
-      setApplicants(response.data);
+      setApplicants(response.data || []);
     } catch (error) {
       toast.error("Error in Aplicants fetching");
       console.log("Error in Aplicants fetching", error);

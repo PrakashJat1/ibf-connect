@@ -34,7 +34,7 @@ const ManagementTimetablePage = () => {
   const fetchAllBatches = async () => {
     try {
       const response = await batchService.getAll();
-      const batches = response.data;
+      const batches = response.data || [];
 
       const formattedOptions = batches.map((batch) => ({
         label: batch.batch_Name,
@@ -54,7 +54,7 @@ const ManagementTimetablePage = () => {
   const fetchAllTimetables = async () => {
     try {
       const response = await timetableService.getAll();
-      setAllTimebables(response.data);
+      setAllTimebables(response.data || []);
     } catch (error) {
       toast.error("Error in fetching AllTimetables");
       console.log("Error in fetching AllTimetables", error);

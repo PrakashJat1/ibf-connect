@@ -34,8 +34,8 @@ const StudentDocumentsPage = () => {
   const fetchStudent = async () => {
     try {
       const response = await studentService.getStudentByUserId(user.userId);
-      setStudent(response.data);
-      return response.data;
+      setStudent(response.data || []);
+      return response.data || []
     } catch (error) {
       if (error && error.response.status === 404) {
         toast.warn("Student is not found");
@@ -48,7 +48,7 @@ const StudentDocumentsPage = () => {
   const fetchAllTimetables = async (id) => {
     try {
       const response = await timetableService.getAllByStudentId(id);
-      setAllTimebables(response.data);
+      setAllTimebables(response.data || []);
     } catch (error) {
       if (error && error.response.status !== 409)
         toast.error("Error in fetching AllTimetables");
@@ -59,7 +59,7 @@ const StudentDocumentsPage = () => {
   const fetchAllPDFs = async (id) => {
     try {
       const response = await pdfService.getAllPDFByStudentId(id);
-      setAllPDF(response.data);
+      setAllPDF(response.data || []);
     } catch (error) {
       toast.error("Error in fetching fetchAllPDFs");
       console.log("Error in fetching fetchAllPDFs", error);

@@ -29,8 +29,8 @@ const StudentCompaniesPage = () => {
   const fetchStudent = async () => {
     try {
       const response = await studentService.getStudentByUserId(user.userId);
-      setStudent(response.data);
-      return response.data;
+      setStudent(response.data || []);
+      return response.data || []
     } catch (error) {
       if (error && error.response.status === 404) {
         toast.warn("Student is not found");
@@ -44,8 +44,9 @@ const StudentCompaniesPage = () => {
     if (id !== undefined)
       try {
         const response = await companyService.getAllByBatchId(id);
+        const company = response.data || || []
         setCompanies(
-          response.data.sort(
+          company.sort(
             (a, b) => new Date(b.driveDate) - new Date(a.driveDate)
           )
         );

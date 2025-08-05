@@ -42,7 +42,7 @@ const ManagementTrainerPage = () => {
   const fetchAllTrainers = async () => {
     try {
       const response = await trainerService.getAll();
-      setTrainers(response.data);
+      setTrainers(response.data || []);
     } catch (error) {
       toast.error("Error in fetching Trainers");
       console.log("Error in fetching Trainers", error);
@@ -98,7 +98,7 @@ const ManagementTrainerPage = () => {
       const response =
         await batchService.fetchAllNonAssignedBatchesForAssignNewBatches(data);
 
-      const batches = response.data;
+      const batches = response.data|| [];
 
       const formattedOptions = batches.map((batch) => ({
         label: batch.batch_Name,

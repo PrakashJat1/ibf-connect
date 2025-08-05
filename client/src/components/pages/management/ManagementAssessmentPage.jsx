@@ -216,7 +216,7 @@ const ManagementAssessmentPage = () => {
   const fetchAllAssessments = async () => {
     try {
       const response = await assessmentService.getAllAssessments();
-      setAllAssessments(response.data);
+      setAllAssessments(response.data || []);
     } catch (error) {
       toast.error("Error in fetching allAssessments");
       console.log("Error in fetching allAssessments", error);

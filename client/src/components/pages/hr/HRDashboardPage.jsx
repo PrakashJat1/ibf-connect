@@ -45,7 +45,9 @@ const HRDashboardPage = () => {
   const fetchCompanies = async () => {
     try {
       const response = await companyService.getAll();
-      const sortedCompanies = response.data.sort(
+
+      const companies = response.data || [];
+      const sortedCompanies = companies?.sort(
         (a, b) => new Date(b.driveDate) - new Date(a.driveDate)
       );
       setCompanies(sortedCompanies);
@@ -62,8 +64,9 @@ const HRDashboardPage = () => {
   const fetchSessions = async () => {
     try {
       const response = await toastmasterService.getAll();
+      const toastmasters = response.data || [];
       setToastmasterSessions(
-        response.data.sort((a, b) => new Date(b.date) - new Date(a.date))
+        toastmasters?.sort((a, b) => new Date(b.date) - new Date(a.date))
       );
     } catch (error) {
       if (error && error.response?.status === 404) {
@@ -77,7 +80,7 @@ const HRDashboardPage = () => {
   const fetchAllBatches = async () => {
     try {
       const response = await batchService.getAll();
-      setAllBatches(response.data);
+      setAllBatches(response.data || []);
     } catch (error) {
       toast.error("Error in fetching fetchAllBatches");
       console.log("Error in fetching fetchAllBatches", error);
@@ -413,13 +416,12 @@ const HRDashboardPage = () => {
   return (
     <>
       <StatCard cards={statCards} />
-      
-        <DataTable
-          title=" Current Month Companies Drives "
-          data={currentMonthDrives}
-          columns={companyColumns}
-        />
-      
+
+      <DataTable
+        title=" Current Month Companies Drives "
+        data={currentMonthDrives}
+        columns={companyColumns}
+      />
 
       {/* Modal for company Edit */}
       <FormModal
