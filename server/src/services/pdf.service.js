@@ -18,7 +18,7 @@ const getAllService = async () => {
     })
     .populate("targetBatchIds");
 
-  if (!pdf) return { success: false, message: "PDFs are not present" };
+  if (pdf.length === 0) return { success: true, message: "PDFs are not present" };
 
   return { success: true, message: "PDF's fetched successfully", data: pdf };
 };
@@ -40,7 +40,7 @@ const getAllPDFByTrainerIdService = async (id) => {
     })
     .populate("targetBatchIds");
 
-  if (!pdf) return { success: false, message: "PDFs are not present" };
+  if (pdf.length === 0) return { success: false, message: "PDFs are not present" };
 
   return { success: true, message: "PDF's fetched successfully", data: pdf };
 };
@@ -65,7 +65,7 @@ const getAllPDFByStuentIdService = async (id) => {
     })
     .populate("targetBatchIds");
 
-  if (!pdf) return { success: false, message: "PDFs are not present" };
+  if (pdf.length === 0) return { success: false, message: "PDFs are not present" };
 
   return { success: true, message: "PDF's fetched successfully", data: pdf };
 };

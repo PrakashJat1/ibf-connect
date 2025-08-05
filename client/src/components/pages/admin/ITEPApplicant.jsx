@@ -54,13 +54,18 @@ const ITEPApplicant = () => {
   const fetchAllBatches = async () => {
     try {
       const response = await batchService.getAll();
-      const unCompletedBatches = response.data
-        ?.filter((batch) => batch.status !== "completed")
-        ?.map((batch) => ({
-          label: batch.batch_Name,
-          value: batch._id,
-        }));
-      setBatches(unCompletedBatches);
+      const batchesData = response.data;
+      if (Array.isArray(batchesData)) {
+        const unCompletedBatches = batchesData
+          .filter((batch) => batch.status !== "completed")
+          .map((batch) => ({
+            label: batch.batch_Name,
+            value: batch._id,
+          }));
+        setBatches(unCompletedBatches);
+      } else {
+        setBatches([]);
+      }
     } catch (error) {
       toast.error("Error in AllBatches fetching");
       console.log("Error in AllBatches fetching", error);
@@ -86,7 +91,8 @@ const ITEPApplicant = () => {
     },
     {
       title: "Allowed for Exam",
-      count: itepApplicants?.filter((applicant) => applicant.examAllowed).length,
+      count: itepApplicants?.filter((applicant) => applicant.examAllowed)
+        .length,
       icon: <CheckCircle2 size={20} />,
     },
     {

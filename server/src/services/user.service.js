@@ -1,7 +1,5 @@
 import userModel from "../models/user.model.js";
 import bcrpt from "bcryptjs";
-import studentService from "./student.service.js";
-import trainerService from "./trainer.service.js";
 import itepapplicantService from "./itepapplicant.service.js";
 import studentModel from "../models/student.model.js";
 import trainerModel from "../models/trainer.model.js";
@@ -9,7 +7,7 @@ import trainerModel from "../models/trainer.model.js";
 //GET
 const getAllUsersService = async (id) => {
   const users = await userModel.find();
-  if (!users) return { success: false, message: "User list is empty" };
+  if (users.length === 0) return { success: true, message: "User list is empty" };
 
   return { success: true, message: `User fetched successfully 😊`, users };
 };

@@ -11,7 +11,7 @@ const getAllService = async () => {
   const applicants = await itepApplicantsModel.find().populate("userId");
 
   if (applicants.length === 0)
-    return { success: false, message: "itep applicants list empty" };
+    return { success: true, message: "itep applicants list empty" };
 
   return { success: true, message: "successfull", data: applicants };
 };
@@ -21,7 +21,7 @@ const getCurrentMonthRegisteredApplicantsService = async () => {
   const applicants = await itepApplicantsModel.find().populate("userId");
 
   if (applicants.length === 0)
-    return { success: false, message: "itep applicants list empty" };
+    return { success: true, message: "itep applicants list empty" };
 
   const currentMonthApplicants = applicants.filter((applicant) => {
     const appliedOn = new Date(applicant.appliedOn);

@@ -43,7 +43,7 @@ const getAllService = async () => {
     });
 
   if (batches.length === 0)
-    return { success: false, message: "batches is not present" };
+    return { success: true, message: "batches is not present" };
 
   return { success: true, message: "Successful", batches };
 };
@@ -113,7 +113,7 @@ const nonAssignedbatchesbyTypeOfTrainerService = async (typeOfTrainer) => {
 
   if (batches.length === 0) {
     return {
-      success: false,
+      success: true,
       message: `All batches are assigned for ${typeOfTrainer} trainer`,
     };
   }
@@ -164,7 +164,7 @@ const fetchAllNonAssignedBatchesForAssignNewBatchesService = async (
 
   if (batches1.length === 0)
     return {
-      success: false,
+      success: true,
       message: `All batches are already assigned to this ${type_Of_Trainer} trainer`,
     };
 

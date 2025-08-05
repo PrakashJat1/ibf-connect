@@ -17,7 +17,7 @@ const getAllService = async () => {
     .populate("assigned_Batches");
 
   if (trainers.length === 0)
-    return { success: false, message: "Trainers list is empty" };
+    return { success: true, message: "Trainers list is empty" };
 
   return { success: true, message: "Successful", data: trainers };
 };

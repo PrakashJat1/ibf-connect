@@ -17,7 +17,7 @@ const getAllIssuesBooksService = async () => {
     .populate("bookId");
 
   if (books.length === 0)
-    return { success: false, message: "Books Issues list is empty" };
+    return { success: true, message: "Books Issues list is empty" };
 
   return { success: true, message: "Books Issues fetched", books1: books };
 };

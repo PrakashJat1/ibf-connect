@@ -14,7 +14,7 @@ const getAllCompaniesDriveService = async () => {
     .find()
     .populate("uploadedBy")
     .populate("batchIds");
-  if (drives.length === 0) return { success: false, message: "Not Drives yet" };
+  if (drives.length === 0) return { success: true, message: "Not Drives yet" };
 
   return { success: true, message: "Drives fetched", data: drives };
 };
@@ -23,7 +23,7 @@ const getAllByBatchIdService = async (batchId) => {
   const drives = await companyModel
     .find({ batchIds: { $in: [batchId] } })
     .populate("uploadedBy");
-  if (drives.length === 0) return { success: false, message: "Not Drives yet" };
+  if (drives.length === 0) return { success: true, message: "Not Drives yet" };
 
   return { success: true, message: "Drives fetched", data: drives };
 };

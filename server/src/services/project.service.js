@@ -18,7 +18,7 @@ const getAllProjectsService = async () => {
     .populate("batchId");
 
   if (projects.length === 0)
-    return { success: false, message: "Projects is not Present" };
+    return { success: true, message: "Projects is not Present" };
 
   return {
     success: true,
@@ -61,7 +61,7 @@ const getAllProjectsByStudentIdService = async (id) => {
     },
   });
 
-  if (!project) return { success: false, message: "Project not uploaded yet" };
+  if (project.length === 0) return { success: true, message: "Project not uploaded yet" };
 
   return {
     success: true,
@@ -83,7 +83,7 @@ const getAllProjectsByBatchIdsService = async (batchIds) => {
     });
 
   if (project.length === 0)
-    return { success: false, message: "Projects not uploaded yet" };
+    return { success: true, message: "Projects not uploaded yet" };
 
   return {
     success: true,

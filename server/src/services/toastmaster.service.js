@@ -16,7 +16,7 @@ const getAllService = async () => {
       },
     });
 
-  if (!toastmaster) return { success: false, message: "toastmaster not exist" };
+  if (toastmaster.length === 0) return { success: true, message: "toastmaster not exist" };
 
   return {
     success: true,
@@ -38,8 +38,8 @@ const getAllSessionsByBatchIdService = async (id) => {
       },
     });
 
-  if (toastmaster.length <= 0)
-    return { success: false, message: "toastmaster not exist" };
+  if (toastmaster.length === 0)
+    return { success: true, message: "toastmaster not exist" };
 
   return {
     success: true,

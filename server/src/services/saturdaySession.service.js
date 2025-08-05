@@ -10,7 +10,7 @@ const getAllService = async () => {
     .populate("batchIds");
 
   if (sessions.length === 0)
-    return { success: false, message: "Sessions not scheduled yet" };
+    return { success: true, message: "Sessions not scheduled yet" };
 
   return {
     success: true,
@@ -24,7 +24,7 @@ const getAllSaturdaySessionsByStudentIdService = async (id) => {
 
   if (!student.assigned_batch)
     return {
-      success: false,
+      success: true,
       message: "Batch not assigned yet for saturday sessions",
     };
 
@@ -36,7 +36,7 @@ const getAllSaturdaySessionsByStudentIdService = async (id) => {
     .populate("batchIds");
 
   if (sessions.length === 0)
-    return { success: false, message: "Session not scheduled yet" };
+    return { success: true, message: "Session not scheduled yet" };
 
   return {
     success: true,

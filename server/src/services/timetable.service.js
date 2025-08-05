@@ -11,8 +11,8 @@ const getAllService = async () => {
     .populate("batchId")
     .populate("uploadedBy");
 
-  if (!timetables)
-    return { success: false, message: "Time tables not present" };
+  if (timetables.length === 0)
+    return { success: true, message: "Time tables not present" };
 
   return {
     success: true,
@@ -35,7 +35,7 @@ const getAllByStudentIdService = async (id) => {
     .populate("uploadedBy");
 
   if (timetable.length === 0)
-    return { success: false, message: "Time table list is empty" };
+    return { success: true, message: "Time table list is empty" };
 
   return {
     success: true,

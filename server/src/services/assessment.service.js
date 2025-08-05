@@ -95,8 +95,8 @@ const getAllService = async (id) => {
       },
     });
 
-  if (!assessment)
-    return { success: false, message: "Assessement listis empty" };
+  if (assessment.length === 0)
+    return { success: true, message: "Assessement listis empty" };
 
   return {
     success: true,
@@ -153,8 +153,8 @@ const getAllByTrainerIdService = async (id) => {
       },
     });
 
-  if (!assessment)
-    return { success: false, message: "Assessement is not present" };
+  if (assessment.length === 0)
+    return { success: true, message: "Assessement is not present" };
 
   return {
     success: true,
@@ -182,8 +182,8 @@ const getAllByBatchIdService = async (id) => {
       },
     });
 
-  if (!assessment)
-    return { success: false, message: "Assessement is not present" };
+  if (assessment.length === 0)
+    return { success: true, message: "Assessement is not present" };
 
   return {
     success: true,
@@ -199,7 +199,7 @@ const getMarksByAssessmentIdService = async (id) => {
     return { success: false, message: "Assessement is not present" };
 
   if (assessment.marks.length === 0)
-    return { success: false, message: "Assessment Marks list is empty" };
+    return { success: true, message: "Assessment Marks list is empty" };
 
   return {
     success: true,
@@ -212,7 +212,7 @@ const getAssessementMarksByStudentIdService = async (id) => {
   const assessments = await assessmentModel.find();
 
   if (assessments.length === 0)
-    return { success: false, message: "Assessement is not present" };
+    return { success: true, message: "Assessement is not present" };
 
   const studentMarks = [];
 
@@ -253,9 +253,9 @@ const getAllAssessmentsByStudentIdService = async (id) => {
       },
     });
 
-  if (!assessment)
+  if (assessment.length === 0)
     return {
-      success: false,
+      success: true,
       message: "Assessment is not present by student Id",
     };
 
