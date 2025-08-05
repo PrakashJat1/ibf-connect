@@ -39,7 +39,7 @@ export const HomePage = () => {
             navigate("/student");
             break;
           case "itep-applicant":
-            navigate("/itep-applicant");
+            navigate("/");
             break;
           default:
             navigate("/not-found");
