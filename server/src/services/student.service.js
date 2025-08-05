@@ -12,7 +12,7 @@ const getAllService = async () => {
     .populate("assigned_batch");
 
   if (students1.length === 0)
-    return { succcess: true, message: "Student list is empty" };
+    return { success: true, message: "Student list is empty" };
 
   return { success: true, message: "Successful", students: students1 };
 };
