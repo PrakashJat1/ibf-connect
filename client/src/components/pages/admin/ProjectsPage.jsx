@@ -26,7 +26,7 @@ const ProjectsPage = () => {
   const fetchAllProjects = async () => {
     try {
       const response = await projectService.getAllProjects();
-      setAllProjects(response.data);
+      setAllProjects(response.data || []);
     } catch (error) {
       toast.error("Error in fetching getAllProjects");
       console.log("Error in fetching getAllProjects", error);

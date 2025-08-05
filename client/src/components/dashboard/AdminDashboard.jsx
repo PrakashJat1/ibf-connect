@@ -55,7 +55,7 @@ const AdminDashboard = () => {
       const response = await batchService.nonAssignedbatchesbyTypeOfTrainer(
         type_Of_Trainer
       );
-      console.log(response.data);
+      console.log(response.data || []);
       // setNonAssignedbatches([]);
       toast.success("Non Assigned Batches fetched Successfully");
     } catch (error) {
@@ -70,7 +70,7 @@ const AdminDashboard = () => {
   const fetchAllBatches = async () => {
     try {
       const response = await batchService.getAll();
-      const batches = response.data;
+      const batches = response.data || [];
 
       const formattedOptions = batches.map((batch) => ({
         label: batch.batch_Name,

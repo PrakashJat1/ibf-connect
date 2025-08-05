@@ -44,7 +44,7 @@ const ITEPApplicant = () => {
   const fetchAllApplicants = async () => {
     try {
       const response = await itepApplicantService.getAll();
-      setItepApplicants(response.data);
+      setItepApplicants(response.data || []);
     } catch (error) {
       toast.error("Error in fetching applicants");
       console.log("Error in fetching applicants", error);
@@ -54,7 +54,7 @@ const ITEPApplicant = () => {
   const fetchAllBatches = async () => {
     try {
       const response = await batchService.getAll();
-      const batchesData = response.data;
+      const batchesData = response.data || [];
       if (Array.isArray(batchesData)) {
         const unCompletedBatches = batchesData
           .filter((batch) => batch.status !== "completed")

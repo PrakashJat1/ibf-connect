@@ -150,7 +150,7 @@ const ToastmasterPage = () => {
   const fetchAllToastMasters = async () => {
     try {
       const response = await toastmasterService.getAll();
-      setAllToastMaster(response.data);
+      setAllToastMaster(response.data || []);
     } catch (error) {
       toast.error("Error in fetching allAssessments");
       console.log("Error in fetching allAssessments", error);

@@ -36,7 +36,7 @@ const DashboardPage = () => {
   const fetchAllUsers = async () => {
     try {
       const response = await userService.getAllUsers();
-      setUsers(response.data.users);
+      setUsers(response.data.users || []);
     } catch (error) {
       toast.error("Error in users fetching");
       console.log("Error in users fetching", error);
@@ -47,7 +47,7 @@ const DashboardPage = () => {
     try {
       const response =
         await itepApplicantService.getAllCurrentMonthApplicants();
-      setApplicants(response.data);
+      setApplicants(response.data || []);
     } catch (error) {
       toast.error("Error in Aplicants fetching");
       console.log("Error in Aplicants fetching", error);

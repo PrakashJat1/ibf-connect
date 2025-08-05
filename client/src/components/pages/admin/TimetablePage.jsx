@@ -154,7 +154,7 @@ const TimetablePage = () => {
   const fetchAllTimeTables = async () => {
     try {
       const response = await timetableService.getAll();
-      setAllTimeTables(response.data);
+      setAllTimeTables(response.data || []);
     } catch (error) {
       toast.error("Error in fetching AllTimeTables");
       console.log("Error in fetching AllTimeTables", error);
@@ -164,7 +164,7 @@ const TimetablePage = () => {
   const fetchAllBatches = async () => {
     try {
       const response = await batchService.getAll();
-      setAllBatches(response.data);
+      setAllBatches(response.data || []);
     } catch (error) {
       toast.error("Error in AllBatches fetching");
       console.log("Error in AllBatches fetching", error);

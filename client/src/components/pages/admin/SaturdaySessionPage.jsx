@@ -41,7 +41,7 @@ const SaturdaySessionPage = () => {
   const fetchAllBatches = async () => {
     try {
       const response = await batchService.getAll();
-      const batches = response.data;
+      const batches = response.data || [];
 
       const formattedOptions = batches.map((batch) => ({
         label: batch.batch_Name,
@@ -61,8 +61,9 @@ const SaturdaySessionPage = () => {
   const fetchSessions = async () => {
     try {
       const response = await saturdaysessionService.getAllSession();
+      const sessions = response.data || [];
       setSessions(
-        response.data.sort((a, b) => new Date(b.date) - new Date(a.date))
+        sessions?.sort((a, b) => new Date(b.date) - new Date(a.date))
       );
     } catch (error) {
       if (error && error.response.status === 404) {

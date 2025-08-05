@@ -29,7 +29,8 @@ const UserPage = () => {
   const fetchAllUsers = async () => {
     try {
       const response = await userService.getAllUsers();
-      setUsers(response.data.users.filter((user) => user.role !== "admin"));
+      const users = response.data || [];
+      setUsers(users.users.filter((user) => user.role !== "admin"));
     } catch (error) {
       toast.error("Error in users fetching");
       console.log("Error in users fetching", error);

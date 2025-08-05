@@ -45,7 +45,7 @@ const TrainerPage = () => {
   const fetchAllTrainers = async () => {
     try {
       const response = await trainerService.getAll();
-      setTrainers(response.data);
+      setTrainers(response.data || []);
     } catch (error) {
       toast.error("Error in fetching Trainers");
       console.log("Error in fetching Trainers", error);
@@ -55,8 +55,8 @@ const TrainerPage = () => {
   const handleAssignBatch = async (data) => {
     try {
       const payLoad = {
-        trainerId: selectedTrainer._id,
-        type_Of_Trainer: selectedTrainer.type_Of_Trainer,
+        trainerId: selectedTrainer?._id,
+        type_Of_Trainer: selectedTrainer?.type_Of_Trainer,
         batchIds: data.assigned_Batches,
       };
 
@@ -101,7 +101,7 @@ const TrainerPage = () => {
       const response =
         await batchService.fetchAllNonAssignedBatchesForAssignNewBatches(data);
 
-      const batches = response.data;
+      const batches = response.data || [];
 
       const formattedOptions = batches.map((batch) => ({
         label: batch.batch_Name,
@@ -132,21 +132,21 @@ const TrainerPage = () => {
     },
     {
       title: "Technical",
-      count: trainers.filter(
+      count: trainers?.filter(
         (trainer) => trainer.type_Of_Trainer === "technical"
       ).length,
       icon: <Code2 size={25} />,
     },
     {
       title: "Soft Skills",
-      count: trainers.filter(
+      count: trainers?.filter(
         (trainer) => trainer.type_Of_Trainer === "softskill"
       ).length,
       icon: <BookOpenText size={25} />,
     },
     {
       title: "Aptitude",
-      count: trainers.filter(
+      count: trainers?.filter(
         (trainer) => trainer.type_Of_Trainer === "aptitude"
       ).length,
       icon: <Brain size={25} />,
