@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 
 const ITEPApplicantDashboard = () => {
-  return (
-    <div>ITEPApplicantDashboard</div>
-  )
-}
+  return <Link to="/">Home</Link>;
+};
 
-export default ITEPApplicantDashboard
+export default ITEPApplicantDashboard;

@@ -151,7 +151,6 @@ const Login = () => {
 
       <ItepSubmissionModal
         show={openApplicantModal}
-        handleClose={() => navigate("/")}
       />
     </>
   );
