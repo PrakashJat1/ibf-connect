@@ -1,8 +1,11 @@
+import useAuth from "@/hooks/useAuth";
 import React from "react";
+import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const ITEPApplicantDashboard = () => {
-  return <Link to="/">Home</Link>;
+  const { logout } = useAuth();
+  return <Button onClick={logout}>Logout</Button>;
 };
 
 export default ITEPApplicantDashboard;
