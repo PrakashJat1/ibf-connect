@@ -44,7 +44,7 @@ const StudentCompaniesPage = () => {
     if (id !== undefined)
       try {
         const response = await companyService.getAllByBatchId(id);
-        const company = response.data || || []
+        const company = response.data ||  []
         setCompanies(
           company.sort(
             (a, b) => new Date(b.driveDate) - new Date(a.driveDate)

@@ -1,9 +1,10 @@
 import FormWrapper from "@/components/common/Form/FormWrapper";
 import InputField from "@/components/common/Form/InputField";
 import Button from "@/components/common/UI/Button";
+import ItepSubmissionModal from "@/components/modals/ITEPSubmissionModal";
 import authService from "@/services/authService";
 import yupSchemas from "@/utils/yupSchemas";
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -11,6 +12,7 @@ const VerifyOTP = () => {
   const location = useLocation();
   const userData = location.state?.userData;
   const navigate = useNavigate();
+  const [openApplicantModal, setOpenApplicantModal] = useState(false);
 
   const handleSubmit = async (data) => {
     const newData = {
@@ -20,9 +22,8 @@ const VerifyOTP = () => {
 
     try {
       await authService.verifyOTP(newData);
-      navigate('/login');
+      setOpenApplicantModal(true);
       toast.success("Registered successfully...!😊");
-
     } catch (error) {
       if (error.response && error.response.status === 404) {
         toast.error(" Invalid or expired OTP");
@@ -67,6 +68,10 @@ const VerifyOTP = () => {
           <Button onClick={resendOTP} label="Resend OTP" />
         </FormWrapper>
       </div>
+      <ItepSubmissionModal
+        show={openApplicantModal}
+        handleClose={() => navigate("/")}
+      />
     </>
   );
 };

@@ -95,7 +95,7 @@ const registeritepAplicantService = async ({
     role: "itep-applicant",
     status: true,
     otp,
-    otpExpiry: new Date(Date.now() + 2 * 60 * 1000), // 2 minutes from now
+    otpExpiry: new Date(Date.now() + 5 * 60 * 1000), // 2 minutes from now
     isverified: false,
   });
 
@@ -216,7 +216,7 @@ const resendotpService = async ({ fullName, email }) => {
     };
 
   existingUser.otp = otp;
-  (existingUser.otpExpiry = new Date(Date.now() + 2 * 60 * 1000)),
+  (existingUser.otpExpiry = new Date(Date.now() + 5 * 60 * 1000)),
     await existingUser.save();
   return { success: true, message: `OTP resend successfully on ${email}` };
 };

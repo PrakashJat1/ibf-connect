@@ -18,7 +18,7 @@ const sendotpmail = async ({ fullName, email, otp }) => {
 
         <h1 style="color: #d35400; letter-spacing: 4px;">${otp}</h1>
 
-        <p><strong>This OTP is valid for 2 minutes only.</strong></p>
+        <p><strong>This OTP is valid for 5 minutes only.</strong></p>
 
         <p>Enter this OTP on the registration page to confirm your identity and activate your account.</p>
 

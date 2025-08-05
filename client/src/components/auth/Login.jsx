@@ -7,14 +7,16 @@ import Header from "@/layouts/Header";
 import authService from "@/services/authService";
 import yupSchemas from "@/utils/yupSchemas";
 import { jwtDecode } from "jwt-decode";
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import logo from "@/assets/logoWBG.png";
+import ItepSubmissionModal from "@/components/modals/ITEPSubmissionModal";
 
 const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
+  const [openApplicantModal, setOpenApplicantModal] = useState(false);
 
   const handleSubmit = async (data) => {
     try {
@@ -55,7 +57,8 @@ const Login = () => {
             navigate("/student");
             break;
           case "itep-applicant":
-            navigate("/itep-applicant");
+            // navigate("/itep-applicant");
+            setOpenApplicantModal(true);
             break;
 
           default:
@@ -145,6 +148,11 @@ const Login = () => {
       </div>
 
       <Footer />
+
+      <ItepSubmissionModal
+        show={openApplicantModal}
+        handleClose={() => navigate("/")}
+      />
     </>
   );
 };
