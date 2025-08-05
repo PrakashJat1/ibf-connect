@@ -123,6 +123,8 @@ const AdminDashboard = () => {
     } catch (error) {
       toast.error("Error in User Creation");
       console.log("Error in User Creation", error);
+    } finally {
+      setAddUserModal(false);
     }
   };
 

@@ -57,7 +57,7 @@ const ManagementBatchPage = () => {
     try {
       const response = await trainerService.getAll();
       setTrainers(response.data || []);
-      const trainers = response.data;
+      const trainers = response.data || [];
 
       setTechnicalTrainers(
         trainers.filter((trainer) => trainer.type_Of_Trainer === "technical")
