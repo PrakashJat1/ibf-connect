@@ -284,21 +284,21 @@ const Register = () => {
                   <InputField
                     type="file"
                     name="photo"
-                    label="Passport Size Photo*"
+                    label="Passport Size Photo in JPEG Format*"
                   />
                 </div>
                 <div className="col-md-4">
                   <InputField
                     type="file"
                     name="documentsPDF"
-                    label="Documents PDF*"
+                    label="Please Upload your Documents in PDF Format – 12th Marksheet and Latest Year Passout Marksheet, Aadhar Card, Father’s Aadhar Card, Samagra ID*"
                   />
                 </div>
                 <div className="col-md-4">
                   <InputField
                     type="file"
                     name="fatherIncomeCerificate"
-                    label="Father's Income Certificate*"
+                    label="Father's Income Certificate in PDF Format*"
                   />
                 </div>
               </div>

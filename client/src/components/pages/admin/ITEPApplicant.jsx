@@ -331,7 +331,7 @@ const ITEPApplicant = () => {
       await itepApplicantService.updateApplicantsStatusForSelectionByIds(
         payLoad
       );
-      toast.success(`Applicants ${data.status}`);
+      toast.success(`Applicants Selected`);
     } catch (error) {
       toast.error("Error in handleFinalSelection of applicants");
       console.log("Error in handleFinalSelection of applicants", error);

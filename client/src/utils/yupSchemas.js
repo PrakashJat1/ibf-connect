@@ -71,7 +71,7 @@ const registerSchema = yup.object({
     .min(2000, "Year must be after 2000"),
 
   familyAnnualIncome: yup
-    .number()
+    .string()
     .typeError("Enter a valid amount")
     .required("Family annual income is required")
     .min(10000, "Income must be at least ₹10,000"),
