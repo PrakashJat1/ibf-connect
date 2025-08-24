@@ -307,7 +307,12 @@ const addPDFSchema = yup.object({
   fileType: yup.string().required(),
   targetBatchIds: yup
     .array()
-    .of(yup.string().required())
+    .transform((value, originalValue) => {
+      if (typeof originalValue === "string") {
+        return [originalValue];
+      }
+      return value;
+    })
     .min(1, "Please select at least one batch")
     .required("This field is required"),
   pdf: yup
