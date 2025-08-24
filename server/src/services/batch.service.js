@@ -541,25 +541,6 @@ const editBatchService = async ({
   };
 };
 
-// const addStudentToBatchService = async (batchId,studentId) => {
-
-//   const batch = await batchModel.findByIdAndUpdate(batchId,
-//     {
-//       $addToSet : { students : studentId}
-//     },
-//     {
-//       new : true
-//     }
-//   );
-
-//   if(!batch) return {success : false , message : "Batch is not present"};
-
-//   return {success : true, message : "Student added"};
-
-// }
-
-//DELETE
-
 const deleteBatchesService = async (ids) => {
   const batches = await batchModel.find({ _id: { $in: ids } });
 

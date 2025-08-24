@@ -275,7 +275,7 @@ const ManagementCompanyPage = () => {
       console.log("Erorr in handleAddCompany", error);
       toast.error("Error in handleAddCompany");
     } finally {
-      setEditCompanyFormModal(false);
+      setAddCompanyModal(false);
       fetchAllCompanies();
       setSelectedRow(null);
     }

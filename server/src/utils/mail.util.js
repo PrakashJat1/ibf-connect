@@ -70,7 +70,7 @@ const sendFinalSelectionMail = async (fullName, email, batch) => {
 
         <p>You can now log in to the <strong>InfoBeans Foundation Management System (IBFMS)</strong> using your registered email and password at:</p>
         <p>
-          <a href="https://ibfms.infobeans.org" target="_blank" style="color: #2e86de;">https://ibfms.infobeans.org</a>
+          <a href="https://ibf-connect.netlify.app/" target="_blank" style="color: #2e86de;">IBF Connect</a>
         </p>
 
         <p>Please make sure to check your dashboard for orientation schedules, tasks, and important announcements.</p>
